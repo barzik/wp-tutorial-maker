@@ -1,0 +1,92 @@
+# Copyright (C) 2013 TODO
+# This file is distributed under the same license as the TODO package.
+msgid ""
+msgstr ""
+"Project-Id-Version: TODO 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
+"POT-Creation-Date: 2014-06-28 20:48+0200\n"
+"PO-Revision-Date: 2014-06-28 20:54+0200\n"
+"Last-Translator: Ran Bar-Zik <ran@bar-zik.com>\n"
+"Language-Team: LANGUAGE <translations@example.com >\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
+"esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-wp-tutorial-maker-admin.php:150
+msgid "Activate WP Tutorial Maker for this category?"
+msgstr "להפעיל את WP Tutorial Maker בקטגוריה זו?"
+
+#: admin/class-wp-tutorial-maker-admin.php:153
+msgid "Tutorial Category Disabled"
+msgstr "תבנית לימוד לא מופעלת"
+
+#: admin/class-wp-tutorial-maker-admin.php:154
+msgid "Tutorial Category Enabled"
+msgstr "תבנית לימוד מופעלת"
+
+#: admin/class-wp-tutorial-maker-admin.php:161
+msgid "Show Previous\\Next Links in posts?"
+msgstr "להציג קישורים לפוסט הקודם/הבא בפוסטים?"
+
+#: admin/class-wp-tutorial-maker-admin.php:164
+msgid "Do Not show previous or next links"
+msgstr "לא להציג קישורים לפוסט הקודם/הבא"
+
+#: admin/class-wp-tutorial-maker-admin.php:165
+msgid "Show previous or next links before the post"
+msgstr "להציג קישורים לפוסט הבא/הקדום לפני הפוסט"
+
+#: admin/class-wp-tutorial-maker-admin.php:166
+msgid "Show previous or next links after the post"
+msgstr "להציג קישורים לפוסט הבא/הקדום אחרי הפוסט"
+
+#: admin/class-wp-tutorial-maker-admin.php:172
+msgid "Text For Next Article Link"
+msgstr "טקסט לקישור למאמר הבא"
+
+#: admin/class-wp-tutorial-maker-admin.php:174
+msgid "Next Tutorial Article"
+msgstr "המאמר הבא בקטגורית הלימוד"
+
+#: admin/class-wp-tutorial-maker-admin.php:178
+msgid "Text For Previous Article Link"
+msgstr "טקסט לקישור למאמר הקודם"
+
+#: admin/class-wp-tutorial-maker-admin.php:180
+msgid "Previous Tutorial Article"
+msgstr "המאמר הקודם בקטגורית הלימוד"
+
+#: admin/class-wp-tutorial-maker-admin.php:185
+msgid "Show links back to category?"
+msgstr "הצג את הקישור חזרה לקטגוריה"
+
+#: admin/class-wp-tutorial-maker-admin.php:188
+msgid "Do Not show all link to category in post"
+msgstr "אל תציג קישור חזרה לקטגוריה"
+
+#: admin/class-wp-tutorial-maker-admin.php:189
+msgid "Show link to category in post"
+msgstr "הצג קישור לקטגוריה בפוסט"
+
+#: admin/class-wp-tutorial-maker-admin.php:195
+#: admin/class-wp-tutorial-maker-admin.php:197
+#, fuzzy
+msgid "Category Link Name"
+msgstr "מאת - שם"
+
+#: admin/class-wp-tutorial-maker-admin.php:202
+#: admin/class-wp-tutorial-maker-admin.php:204
+msgid "Text To Present Before Link To Category"
+msgstr "טקסט להצגה לפני קישור לקטגוריה"
+
+#: public/class-wp-tutorial-maker.php:272
+#: public/class-wp-tutorial-maker.php:273
+msgid "&raquo;"
+msgstr "&raquo;"

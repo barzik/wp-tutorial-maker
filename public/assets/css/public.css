@@ -1,0 +1,9 @@
+/* This stylesheet is used to style the public-facing components of the plugin. */
+.wptm_nextprev {
+    display: block;
+    width: 100%;
+}
+.wptm_prev, .wptm_next {
+    display: inline-block;
+    width: 50%;
+}
