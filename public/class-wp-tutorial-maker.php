@@ -117,17 +117,10 @@ class wp_tutorial_maker {
 				foreach ( $blog_ids as $blog_id ) {
 
 					switch_to_blog( $blog_id );
-					self::single_activate();
 
 					restore_current_blog();
 				}
-
-			} else {
-				self::single_activate();
 			}
-
-		} else {
-			self::single_activate();
 		}
 
 	}
@@ -184,7 +177,6 @@ class wp_tutorial_maker {
 		}
 
 		switch_to_blog( $blog_id );
-		self::single_activate();
 		restore_current_blog();
 
 	}

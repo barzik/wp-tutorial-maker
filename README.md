@@ -54,5 +54,8 @@ After activating WP Tutorial Maker, you can go to any category in your WordPress
 
 == Changelog ==
 
+= 1.1 =
+* Major issue fix - Removing single_activate calls and change plugin description.
+
 = 1.0 =
 * Initial version

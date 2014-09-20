@@ -14,8 +14,8 @@
  * @wordpress-plugin
  * Plugin Name:       wp-tutorial-maker
  * Plugin URI:        http://internet-israel.com
- * Description:       Plugin to display notice and messages on posts
- * Version:           1.0.1
+ * Description:       Plugin to convert categories to Tutorial based categories.
+ * Version:           1.1
  * Author:            Ran Bar-Zik <ran@bar-zik.com>
  * Author URI:        http://internet-israel.com
  * Text Domain:       wp-tutorial-maker
