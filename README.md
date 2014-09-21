@@ -2,7 +2,7 @@
 Contributors: barzik
 Tags: tutorial, category,
 Requires at least: 3.5.1
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -53,6 +53,9 @@ After activating WP Tutorial Maker, you can go to any category in your WordPress
 2. All of the options that available when choosing to activate the tutorial on single category.
 
 == Changelog ==
+
+= 1.2 =
+* Major issue fix - Insert deactivate clearing function
 
 = 1.1 =
 * Major issue fix - Removing single_activate calls and change plugin description.

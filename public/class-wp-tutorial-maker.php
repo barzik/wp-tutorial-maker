@@ -23,7 +23,7 @@ class wp_tutorial_maker {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '1.2';
 
 	/**
 	 * The variable name is used as the text domain when internationalizing strings
@@ -34,7 +34,7 @@ class wp_tutorial_maker {
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'wp-tutorial-maker';
+	protected static $plugin_slug = 'wp-tutorial-maker';
 
 	/**
 	 * Instance of this class.
@@ -65,6 +65,7 @@ class wp_tutorial_maker {
         add_filter( 'posts_orderby', array( $this, 'reorder_category' ) );
         add_filter( 'the_content', array( $this, 'add_previous_next_links' ) );
 
+        $this->plugin_slug = self::$plugin_slug;
 	}
 
 	/**
@@ -75,7 +76,7 @@ class wp_tutorial_maker {
 	 * @return    Plugin slug variable.
 	 */
 	public function get_plugin_slug() {
-		return $this->plugin_slug;
+		return self::$plugin_slug;
 	}
 
 	/**
@@ -181,6 +182,15 @@ class wp_tutorial_maker {
 
 	}
 
+    /**
+     * Clearing out the data
+     */
+
+    private static function single_deactivate() {
+        delete_option(self::$plugin_slug);
+    }
+
+
 	/**
 	 * Get all blog ids of blogs in the current network that are:
 	 * - not archived
@@ -231,13 +241,9 @@ class wp_tutorial_maker {
 
 
 	/**
-	 * NOTE:  Filters are points of execution in which WordPress modifies data
-	 *        before saving it or sending it to the browser.
-	 *
-	 *        Filters: http://codex.wordpress.org/Plugin_API#Filters
-	 *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-	 *
-	 * @since    1.0.0
+     *
+     * The filter for posts_orderby
+     *
 	 */
     public function reorder_category($orderby) {
 
@@ -246,24 +252,35 @@ class wp_tutorial_maker {
 
         // Check if you are in the Category Page. Should not be called in case of main page/archives/tags
         if ( is_category() && $curr_category_name != '' ) {
+
             $term_id = get_cat_ID($curr_category_name);
             if ( $wp_tutorial_maker_decider[$term_id]['wptm'] == 1 ) {
                 remove_filter('posts_orderby', 'reorder_category');
                 return 'post_date ASC';
             }
         }
+
+        return $orderby;
     }
+
+    /**
+     *
+     * returning HTML next\previous links
+     *
+     * @param $content
+     * @return string
+     */
 
     public function add_previous_next_links($content) {
 
         if (is_single() ) {
+
             $tutorial_maker_options = $this->test_if_in_tutorial_category(get_the_ID());
 
             if($tutorial_maker_options  != false && $tutorial_maker_options['wptm'] != 0) {
 
                 !empty($tutorial_maker_options['wp_tutorial_maker_prev_text']) ?  $prev_text = $tutorial_maker_options['wp_tutorial_maker_prev_text'] : $prev_text = __('&raquo;',$this->plugin_slug);
                 !empty($tutorial_maker_options['wp_tutorial_maker_next_text']) ?  $next_text = $tutorial_maker_options['wp_tutorial_maker_next_text'] : $next_text = __('&raquo;',$this->plugin_slug);
-
 
                 if(is_rtl() == true) {
                     $prev_text .= ' %link ';
@@ -292,18 +309,19 @@ class wp_tutorial_maker {
 
                 }
 
-
             }
-
-
-
-
-
 
         }
         return $content;
     }
 
+    /**
+     *
+     * checking if the category is a tutorial category
+     *
+     * @param int $id
+     * @return bool
+     */
 
     private function test_if_in_tutorial_category($id = 0) {
         $categories = wp_get_post_categories($id);

@@ -35,6 +35,7 @@ class wp_tutorial_maker_Admin {
 		$plugin = wp_tutorial_maker::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
+
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
@@ -117,6 +118,8 @@ class wp_tutorial_maker_Admin {
 
 
             update_option($this->plugin_slug, $wp_tutorial_maker_decider);
+
+
         }
 	}
 
@@ -144,7 +147,8 @@ class wp_tutorial_maker_Admin {
 
     public function tutorial_decider($tag) {
 
-        $wp_tutorial_maker_decider = get_option($this->plugin_slug);;
+        $wp_tutorial_maker_decider = get_option($this->plugin_slug);
+
 		$form = "<table class='form-table'><tbody>
 		<tr class='form-field'>
 		<th scope='row'><label for='wp_tutorial_maker'>".__('Activate WP Tutorial Maker for this category?',$this->plugin_slug)."</label></th>
