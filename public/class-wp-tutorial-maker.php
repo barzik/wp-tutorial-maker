@@ -65,7 +65,6 @@ class wp_tutorial_maker {
         add_filter( 'posts_orderby', array( $this, 'reorder_category' ) );
         add_filter( 'the_content', array( $this, 'add_previous_next_links' ) );
 
-        $this->plugin_slug = self::$plugin_slug;
 	}
 
 	/**
@@ -222,7 +221,7 @@ class wp_tutorial_maker {
 	 */
 	public function load_plugin_textdomain() {
 
-		$domain = $this->plugin_slug;
+		$domain = self::$plugin_slug;
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
@@ -236,7 +235,7 @@ class wp_tutorial_maker {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+		wp_enqueue_style( self::$plugin_slug . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
 	}
 
 
@@ -247,7 +246,7 @@ class wp_tutorial_maker {
 	 */
     public function reorder_category($orderby) {
 
-        $wp_tutorial_maker_decider = get_option($this->plugin_slug);;
+        $wp_tutorial_maker_decider = get_option( self::$plugin_slug );;
         $curr_category_name = single_cat_title('', false);
 
         // Check if you are in the Category Page. Should not be called in case of main page/archives/tags
@@ -279,8 +278,17 @@ class wp_tutorial_maker {
 
             if($tutorial_maker_options  != false && $tutorial_maker_options['wptm'] != 0) {
 
-                !empty($tutorial_maker_options['wp_tutorial_maker_prev_text']) ?  $prev_text = $tutorial_maker_options['wp_tutorial_maker_prev_text'] : $prev_text = __('&raquo;',$this->plugin_slug);
-                !empty($tutorial_maker_options['wp_tutorial_maker_next_text']) ?  $next_text = $tutorial_maker_options['wp_tutorial_maker_next_text'] : $next_text = __('&raquo;',$this->plugin_slug);
+                if( !empty( $tutorial_maker_options['wp_tutorial_maker_prev_text'] ) ) {
+                    $prev_text = '<span>'.$tutorial_maker_options['wp_tutorial_maker_prev_text'].'</span>';
+                } else {
+                    $prev_text = '<span>'.__('&raquo;', self::$plugin_slug ).'</span>';
+                }
+
+                if( !empty( $tutorial_maker_options['wp_tutorial_maker_next_text'] ) ) {
+                    $next_text = '<span>'.$tutorial_maker_options['wp_tutorial_maker_next_text'].'</span>';
+                } else {
+                    $next_text = '<span>'.__('&raquo;', self::$plugin_slug ).'</span>';
+                }
 
                 if(is_rtl() == true) {
                     $prev_text .= ' %link ';
@@ -291,7 +299,14 @@ class wp_tutorial_maker {
                 }
 
 
-                $prev_next_links = "<div class='wptm_nextprev'><div class='wptm_prev'>".get_previous_post_link($prev_text,  '%title', true)."</div><div class='wptm_next'>".get_next_post_link( $next_text,  '%title', true )."</div></div>";
+                $prev_next_links = "<div class='wptm_nextprev'>
+                                        <div class='wptm_prev'>".
+                                            get_previous_post_link( $prev_text,  '%title', true ).
+                                        "</div>
+                                        <div class='wptm_next'>".
+                                            get_next_post_link( $next_text,  '%title', true )."
+                                        </div>
+                                    </div>";
 
                 if($tutorial_maker_options['wp_tutorial_maker_nextprev'] == 'before') {
                     $content = $prev_next_links.$content;
@@ -301,9 +316,13 @@ class wp_tutorial_maker {
                 }
 
                 if($tutorial_maker_options['wp_tutorial_maker_show_category_index']) {
-                    $link_to_category = get_category_link($tutorial_maker_options['wptm']);
-                    $html = "<div id='wptm_before_category_link_text'>{$tutorial_maker_options['wp_tutorial_maker_text_category_list']}</div>";
-                    $html .= "<a href='$link_to_category'>{$tutorial_maker_options['wp_tutorial_maker_text_category_link_name']}</a>";
+                    $link_to_category = get_category_link( $tutorial_maker_options['category_id'] );
+                    $html = "<div id='wptm_before_category_link_text'>
+                                {$tutorial_maker_options['wp_tutorial_maker_text_category_list']}
+                            </div>";
+                    $html .= "<div class='wptm_link_to_category'><a href='$link_to_category'>
+                                {$tutorial_maker_options['wp_tutorial_maker_text_category_link_name']}
+                            </div></a>";
 
                     $content .= $html;
 
@@ -323,11 +342,13 @@ class wp_tutorial_maker {
      * @return bool
      */
 
-    private function test_if_in_tutorial_category($id = 0) {
-        $categories = wp_get_post_categories($id);
-        $wp_tutorial_maker_decider = get_option($this->plugin_slug);
-        foreach($categories as $key => $category_id) {
-            if(!empty($wp_tutorial_maker_decider[$category_id])) {
+    private function test_if_in_tutorial_category( $id = 0 ) {
+
+        $categories = wp_get_post_categories( $id );
+        $wp_tutorial_maker_decider = get_option( self::$plugin_slug );
+        foreach( $categories as $category_id ) {
+            if( !empty( $wp_tutorial_maker_decider[$category_id] ) ) {
+                $wp_tutorial_maker_decider[$category_id]['category_id'] = $category_id; //adding category ID
                 return $wp_tutorial_maker_decider[$category_id];
             }
         }

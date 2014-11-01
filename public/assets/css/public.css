@@ -5,5 +5,20 @@
 }
 .wptm_prev, .wptm_next {
     display: inline-block;
-    width: 50%;
+    width: 49%;
+}
+.wptm_prev span, .wptm_next span {
+    font-weight: bold;
+    display: block;
+}
+#wptm_before_category_link_text {
+    font-weight: bold;
+    display: block;
+}
+.wptm_link_to_category {
+    font-weight: bold;
+    font-size: larger;
+    display: block;
+    text-align: center;
+    width: 100%;
 }
