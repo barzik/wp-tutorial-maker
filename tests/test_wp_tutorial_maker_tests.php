@@ -5,7 +5,7 @@
  *
  * @package wordpress-plugins-tests
  */
-class WP_Test_WPnotice_Plugin_Tests extends WP_UnitTestCase {
+class WP_test_tutorial_maker extends WP_UnitTestCase {
 
 	/**
 	 * Ensure that the plugin has been installed and activated.
@@ -19,12 +19,12 @@ class WP_Test_WPnotice_Plugin_Tests extends WP_UnitTestCase {
      */
 
     function test_plugin_shortname() {
-        $plugin = WP_notice::get_instance();
+        $plugin = wp_tutorial_maker::get_instance();
         $result = $plugin->get_plugin_slug();
         $this->assertEquals('wp-tutorial-maker', $result);
     }
 
-    //To Be continued
+
 
 
 
