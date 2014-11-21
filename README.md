@@ -54,6 +54,11 @@ After activating WP Tutorial Maker, you can go to any category in your WordPress
 
 == Changelog ==
 
+= 1.3 =
+* Fixed bad link back to tutorial category
+* fixed i18n po-mo
+* CSS improvements
+
 = 1.2 =
 * Major issue fix - Insert deactivate clearing function
 

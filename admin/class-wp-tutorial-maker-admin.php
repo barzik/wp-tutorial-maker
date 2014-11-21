@@ -24,6 +24,8 @@ class wp_tutorial_maker_Admin {
 	 */
 	protected static $instance = null;
 
+
+
 	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
@@ -78,10 +80,12 @@ class wp_tutorial_maker_Admin {
 	 */
 	public function enqueue_admin_styles() {
 
-        if($_GET['taxonomy'] == 'category' )
-        wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), wp_tutorial_maker::VERSION );
+        if( 'category' == $_GET['taxonomy'] ) {
+            wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), wp_tutorial_maker::VERSION );
+        }
 
     }
+
 
 	/**
 	 * Register and enqueue admin-specific JavaScript.
@@ -91,7 +95,7 @@ class wp_tutorial_maker_Admin {
 	 */
 	public function enqueue_admin_scripts() {
 
-        if($_GET['taxonomy'] == 'category' )
+        if( 'category' == $_GET['taxonomy'] )
             wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), wp_tutorial_maker::VERSION );
 
 	}
@@ -105,7 +109,8 @@ class wp_tutorial_maker_Admin {
      * @param $term_id
      */
     public function wp_tutorial_maker_option_update($term_id) {
-        if($_POST['taxonomy'] == 'category') {
+        global $current_user;
+        if('category' == $_POST['taxonomy'] && user_can( $current_user, 'manage_categories' ) ) {
             $wp_tutorial_maker_decider = get_option($this->plugin_slug);;
             $wp_tutorial_maker_decider[$term_id]['wptm'] = $_POST['wp_tutorial_maker'];
             $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_nextprev'] = $_POST['wp_tutorial_maker_nextprev'];
@@ -116,9 +121,7 @@ class wp_tutorial_maker_Admin {
             $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_link_name'] = $_POST['wp_tutorial_maker_text_category_link_name'];
             $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_list'] = $_POST['wp_tutorial_maker_text_category_list'];
 
-
             update_option($this->plugin_slug, $wp_tutorial_maker_decider);
-
 
         }
 	}
@@ -148,8 +151,9 @@ class wp_tutorial_maker_Admin {
     public function tutorial_decider($tag) {
 
         $wp_tutorial_maker_decider = get_option($this->plugin_slug);
-
+        $wp_nonce = wp_nonce_field('tutorial_maker','allow_tags');
 		$form = "<table class='form-table'><tbody>
+        $wp_nonce
 		<tr class='form-field'>
 		<th scope='row'><label for='wp_tutorial_maker'>".__('Activate WP Tutorial Maker for this category?',$this->plugin_slug)."</label></th>
 		<td>
