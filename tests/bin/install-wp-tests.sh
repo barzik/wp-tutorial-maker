@@ -151,7 +151,7 @@ install_rspec_requirements() {
 }
 
 start_server() {
-  mv $DIR/lib/router.php $WP_CORE_DIR/router.php
+  mv $DIR/bin/router.php $WP_CORE_DIR/router.php
   cd $WP_CORE_DIR
   # Start it in background
   php -S 0.0.0.0:$WP_PORT router.php &
