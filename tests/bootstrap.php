@@ -18,6 +18,7 @@ require_once $_tests_dir . '/includes/functions.php';
 
 function _manually_load_plugin() {
 	require dirname( __DIR__ ) . '/'.PLUGIN_NAME;
+	require dirname( __DIR__ )  . '/admin/class-wp-tutorial-maker-admin.php';
 }
 
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );

@@ -80,7 +80,7 @@ class wp_tutorial_maker_Admin {
 	 */
 	public function enqueue_admin_styles() {
 
-        if( 'category' == $_GET['taxonomy'] ) {
+        if( isset($_GET['taxonomy']) && 'category' == $_GET['taxonomy'] ) {
             wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), wp_tutorial_maker::VERSION );
         }
 
@@ -94,13 +94,11 @@ class wp_tutorial_maker_Admin {
 	 * @return    null    Return early if no settings page is registered.
 	 */
 	public function enqueue_admin_scripts() {
-
-        if( 'category' == $_GET['taxonomy'] )
+        if( isset($_GET['taxonomy']) && 'category' === $_GET['taxonomy'] ) {
             wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), wp_tutorial_maker::VERSION );
+        }
 
 	}
-
-
 
     /**
      *
@@ -118,8 +116,7 @@ class wp_tutorial_maker_Admin {
             $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_prev_text'] = $_POST['wp_tutorial_maker_prev_text'];
             $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_show_category_index'] = $_POST['wp_tutorial_maker_show_category_index'];
             $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_list'] = $_POST['wp_tutorial_maker_text_category_list'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_link_name'] = $_POST['wp_tutorial_maker_text_category_link_name'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_list'] = $_POST['wp_tutorial_maker_text_category_list'];
+            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_link_name'] = $_POST['wp_tutorial_maker_text_category_link_list'];
 
             update_option($this->plugin_slug, $wp_tutorial_maker_decider);
 
@@ -134,7 +131,9 @@ class wp_tutorial_maker_Admin {
      */
 
     public function wp_tutorial_maker_option_delete($term_id) {
-        if($_POST['taxonomy'] == 'category') {
+        global $current_user;
+
+        if($_POST['taxonomy'] == 'category' && user_can( $current_user, 'manage_categories' )) {
             $wp_tutorial_maker_decider = get_option($this->plugin_slug);
             unset($wp_tutorial_maker_decider[$term_id]);
             update_option($this->plugin_slug, $wp_tutorial_maker_decider);
