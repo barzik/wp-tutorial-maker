@@ -12,7 +12,7 @@
  * Plugin Name:       wp-tutorial-maker
  * Plugin URI:        http://internet-israel.com
  * Description:       Plugin to convert categories to Tutorial based categories.
- * Version:           1.3
+ * Version:           1.4
  * Author:            Ran Bar-Zik <ran@bar-zik.com>
  * Author URI:        http://internet-israel.com
  * Text Domain:       wp-tutorial-maker
