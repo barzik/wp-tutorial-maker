@@ -8,6 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WP tutorial maker will make your selected categories into tutorial style categories.
+The posts inside the categories will include previous and next links to other tutorials articles.
 
 == Description ==
 
@@ -53,6 +54,11 @@ After activating WP Tutorial Maker, you can go to any category in your WordPress
 2. All of the options that available when choosing to activate the tutorial on single category.
 
 == Changelog ==
+
+= 1.5 =
+* Fixing security breaches in admin interface
+* Adding a lot more automated tests
+* Adding test coverage report
 
 = 1.4 =
 * Adding TravisCi support
