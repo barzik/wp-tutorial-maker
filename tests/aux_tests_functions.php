@@ -25,7 +25,7 @@ class WP_test_Tests_AuxFunctions {
         $_POST['wp_tutorial_maker_prev_text'] = 'Some prev text';
         $_POST['wp_tutorial_maker_show_category_index'] = 1;
         $_POST['wp_tutorial_maker_text_category_list'] = 'Some Category List Header';
-        $_POST['wp_tutorial_maker_text_category_link_list']  = 'Some Name to Category Link';
+        $_POST['wp_tutorial_maker_text_category_link_name']  = 'Some Name to Category Link';
     }
 
     public function get_option_array_count() {

@@ -83,9 +83,10 @@ class WP_test_tutorial_maker extends WP_UnitTestCase {
         $post_content_inside_tutorial = get_echo( 'the_content' );
 
         //making sure that the tutorial pretext that I want is there
-
+        
         $this->assertRegExp('/<div class=\'wptm_prev\'><span>Some prev text<\/span><a href="http:\/\/example\.org\/\?p='.$post_ids[0].'" rel="prev">POST1<\/a> <\/div>/', $post_content_inside_tutorial);
         $this->assertRegExp('/<div class=\'wptm_next\'><span>Some next text<\/span><a href="http:\/\/example\.org\/\?p='.$post_ids[2].'" rel="next">POST3<\/a> <\/div>/', $post_content_inside_tutorial);
+        $this->assertRegExp('/<div id=\'wptm_before_category_link_text\'>Some Category List Header<\/div>/', $post_content_inside_tutorial);
         $this->assertRegExp('/<div id=\'wptm_before_category_link_text\'>Some Category List Header<\/div>/', $post_content_inside_tutorial);
         $this->assertRegExp('/<div class=\'wptm_link_to_category\'><a href=\'http:\/\/example\.org\/\?cat='.$cat_id.'\'>Some Name to Category Link<\/div>/', $post_content_inside_tutorial);
 
