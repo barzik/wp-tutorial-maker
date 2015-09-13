@@ -38,6 +38,12 @@ class WP_test_tutorial_maker extends WP_UnitTestCase {
         $this->assertEquals('wp-tutorial-maker', $result);
     }
 
+    function test_plugin_reorder() {
+        $WP_test_tutorial_maker_admin = new WP_test_tutorial_maker_admin();
+
+
+    }
+
 
 
 }

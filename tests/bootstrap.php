@@ -17,6 +17,7 @@ $GLOBALS['wp_tests_options'] = array(
 require_once $_tests_dir . '/includes/functions.php';
 
 function _manually_load_plugin() {
+	require 'aux_tests_functions.php';
 	require dirname( __DIR__ ) . '/'.PLUGIN_NAME;
 	require dirname( __DIR__ )  . '/admin/class-wp-tutorial-maker-admin.php';
 }
