@@ -107,6 +107,7 @@ class wp_tutorial_maker_Admin {
      * @param $term_id
      */
     public function wp_tutorial_maker_option_update($term_id) {
+
         if(!is_numeric($term_id)) {
             return '';
         }
@@ -137,13 +138,13 @@ class wp_tutorial_maker_Admin {
             $wpmd[$term_id]['wp_tutorial_maker_next_text'] = sanitize_text_field( $_POST['wp_tutorial_maker_next_text'] );
             $wpmd[$term_id]['wp_tutorial_maker_prev_text'] = sanitize_text_field( $_POST['wp_tutorial_maker_prev_text'] );
             //only 0 or 1
-            if( 1 === $_POST['wp_tutorial_maker_show_category_index']) {
+            if( 1 == $_POST['wp_tutorial_maker_show_category_index']) {
                 $wpmd[$term_id]['wp_tutorial_maker_show_category_index'] = 1;
             } else {
                 $wpmd[$term_id]['wp_tutorial_maker_show_category_index'] = 0;
             }
             $wpmd[$term_id]['wp_tutorial_maker_text_category_list'] = sanitize_text_field( $_POST['wp_tutorial_maker_text_category_list'] );
-            $wpmd[$term_id]['wp_tutorial_maker_text_category_link_name'] = sanitize_text_field ( $_POST['wp_tutorial_maker_text_category_link_list'] );
+            $wpmd[$term_id]['wp_tutorial_maker_text_category_link_name'] = sanitize_text_field ( $_POST['wp_tutorial_maker_text_category_link_name'] );
 
             update_option($this->plugin_slug, $wpmd);
 
