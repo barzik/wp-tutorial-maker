@@ -18,6 +18,7 @@ class WP_test_Tests_AuxFunctions {
     public function set_up_post_data() {
         global $_POST;
         $_POST['taxonomy'] = 'category';
+        $_POST['tutorial_maker'] = wp_create_nonce( 'submit_tutorial_category' );
         $_POST['wp_tutorial_maker'] = 1;
         $_POST['wp_tutorial_maker_nextprev'] = 'after';
         $_POST['wp_tutorial_maker_next_text'] = 'Some next text';

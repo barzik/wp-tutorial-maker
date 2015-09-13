@@ -111,6 +111,10 @@ class wp_tutorial_maker_Admin {
             return '';
         }
 
+        if (!isset( $_POST['tutorial_maker'] ) || ! wp_verify_nonce( $_POST['tutorial_maker'], 'submit_tutorial_category' )) {
+            return '';
+        }
+
         global $current_user;
         if('category' == $_POST['taxonomy'] && user_can( $current_user, 'manage_categories' ) ) {
             $wpmd = get_option($this->plugin_slug);;
@@ -173,7 +177,7 @@ class wp_tutorial_maker_Admin {
     public function tutorial_decider($tag) {
 
         $wp_tutorial_maker_decider = get_option($this->plugin_slug);
-        $wp_nonce = wp_nonce_field('tutorial_maker','allow_tags');
+        $wp_nonce = wp_nonce_field('submit_tutorial_category', 'tutorial_maker');
 		$form = "<table class='form-table'><tbody>
         $wp_nonce
 		<tr class='form-field'>
@@ -201,13 +205,13 @@ class wp_tutorial_maker_Admin {
         <tr class='form-field wp_tutorial_maker_more_options'>
         <th scope='row'><label for='wp_tutorial_maker_next_text'>".__('Text For Next Article Link',$this->plugin_slug)."</label></th>
         <td>
-            <input id='wp_tutorial_maker_next_text' name='wp_tutorial_maker_next_text' placeholder='".__('Next Tutorial Article',$this->plugin_slug)."' value='".$wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_next_text']."' />
+            <input id='wp_tutorial_maker_next_text' name='wp_tutorial_maker_next_text' placeholder='".__('Next Tutorial Article',$this->plugin_slug)."' value='".sanitize_text_field( $wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_next_text'] )."' />
         </td>
         </tr>
         <tr class='form-field wp_tutorial_maker_more_options'>
         <th scope='row'><label for='wp_tutorial_maker_prev_text'>".__('Text For Previous Article Link',$this->plugin_slug)."</label></th>
         <td>
-             <input id='wp_tutorial_maker_prev_text' name='wp_tutorial_maker_prev_text' placeholder='".__('Previous Tutorial Article',$this->plugin_slug)."' value='".$wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_prev_text']."' />
+             <input id='wp_tutorial_maker_prev_text' name='wp_tutorial_maker_prev_text' placeholder='".__('Previous Tutorial Article',$this->plugin_slug)."' value='".sanitize_text_field( $wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_prev_text'] )."' />
         </td>
         </tr>";
         $form .= "
@@ -224,14 +228,14 @@ class wp_tutorial_maker_Admin {
         <tr class='form-field wp_tutorial_maker_more_options'>
         <th scope='row'><label for='wp_tutorial_maker_text_category_link_name'>".__('Category Link Name',$this->plugin_slug)."</label></th>
         <td>
-            <input id='wp_tutorial_maker_text_category_link_name' name='wp_tutorial_maker_text_category_link_name' placeholder='".__('Category Link Name',$this->plugin_slug)."' value='".$wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_text_category_link_name']."' />
+            <input id='wp_tutorial_maker_text_category_link_name' name='wp_tutorial_maker_text_category_link_name' placeholder='".__('Category Link Name',$this->plugin_slug)."' value='".sanitize_text_field( $wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_text_category_link_name'] )."' />
         </td>
         </tr>";
         $form .= "
         <tr class='form-field wp_tutorial_maker_more_options'>
         <th scope='row'><label for='wp_tutorial_maker_text_category_list'>".__('Text To Present Before Link To Category',$this->plugin_slug)."</label></th>
         <td>
-            <textarea id='wp_tutorial_maker_text_category_list' name='wp_tutorial_maker_text_category_list' placeholder='".__('Text To Present Before Link To Category',$this->plugin_slug)."'>".$wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_text_category_list']."</textarea>
+            <textarea id='wp_tutorial_maker_text_category_list' name='wp_tutorial_maker_text_category_list' placeholder='".__('Text To Present Before Link To Category',$this->plugin_slug)."'>".sanitize_text_field( $wp_tutorial_maker_decider[$tag->term_id]['wp_tutorial_maker_text_category_list'] )."</textarea>
         </td>
         </tr>";
 
