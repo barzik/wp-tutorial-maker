@@ -298,7 +298,7 @@ class wp_tutorial_maker {
                 }
 
 
-                $prev_next_links = strip_ws("<div class='wptm_nextprev'>
+                $prev_next_links = trim("<div class='wptm_nextprev'>
                                         <div class='wptm_prev'>".
                                             get_previous_post_link( $prev_text,  '%title', true ).
                                         "</div>
@@ -316,10 +316,10 @@ class wp_tutorial_maker {
 
                 if($tutorial_maker_options['wp_tutorial_maker_show_category_index']) {
                     $link_to_category = get_category_link( $tutorial_maker_options['category_id'] );
-                    $html = strip_ws("<div id='wptm_before_category_link_text'>".
+                    $html = trim("<div id='wptm_before_category_link_text'>".
                                 "{$tutorial_maker_options['wp_tutorial_maker_text_category_list']}".
                             "</div>");
-                    $html .= strip_ws("<div class='wptm_link_to_category'><a href='$link_to_category'>".
+                    $html .= trim("<div class='wptm_link_to_category'><a href='$link_to_category'>".
                                 "{$tutorial_maker_options['wp_tutorial_maker_text_category_link_name']}".
                             "</div></a>");
 
