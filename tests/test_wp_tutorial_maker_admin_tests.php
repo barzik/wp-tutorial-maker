@@ -11,10 +11,7 @@ class WP_test_tutorial_maker_admin extends WP_UnitTestCase {
     public $auxClass;
 
     function __construct() {
-
-        $this->auxClass = new AuxTestsFunctions();
-
-
+        $this->auxClass = new WP_test_Tests_AuxFunctions();
     }
 
 
@@ -29,7 +26,7 @@ class WP_test_tutorial_maker_admin extends WP_UnitTestCase {
         $plugin_admin = wp_tutorial_maker_Admin::get_instance();
 
         //define new term
-        $tid = $this->auxClass->generate_tid();
+        $tid = $this->generate_tid();
 
         //getting the number of current base decider
         $base_decider_count = $this->auxClass->get_option_array_count();
@@ -61,7 +58,7 @@ class WP_test_tutorial_maker_admin extends WP_UnitTestCase {
 
         $plugin_admin = wp_tutorial_maker_Admin::get_instance();
         //define new term
-        $tid = $this->auxClass->generate_tid();
+        $tid = $this->generate_tid();
         //making sure that we have $_POST data
         $this->auxClass->set_up_post_data();
 
@@ -122,7 +119,7 @@ class WP_test_tutorial_maker_admin extends WP_UnitTestCase {
         $plugin_admin = wp_tutorial_maker_Admin::get_instance();
 
         //define new term
-        $tid = $this->auxClass->generate_tid();
+        $tid = $this->generate_tid();
 
         //submitting data!
         $plugin_admin->wp_tutorial_maker_option_update($tid);
@@ -140,6 +137,17 @@ class WP_test_tutorial_maker_admin extends WP_UnitTestCase {
         $this->assertNotEmpty($tag_option_array['wp_tutorial_maker_show_category_index']);
         $this->assertNotEmpty($tag_option_array['wp_tutorial_maker_text_category_link_name']);
         $this->assertNotEmpty($tag_option_array['wp_tutorial_maker_text_category_list']);
+    }
+
+    public function generate_tid() {
+        // create Test Categories and Array Representations
+        $testcat_array = array(
+            'slug' => 'testmcc',
+            'name' => 'Test MCC',
+            'description' => 'Category Test'
+        );
+        $testcat = $this->factory->category->create_and_get( $testcat_array );
+        return $testcat->term_id;
     }
 
 }

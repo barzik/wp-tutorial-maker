@@ -1,6 +1,11 @@
 <?php
 
-class AuxTestsFunctions {
+/**
+ * Aux functions
+ *
+ * @package wordpress-plugins-tests
+ */
+class WP_test_Tests_AuxFunctions {
 
     public $plugin;
     public $plugin_admin;
@@ -20,14 +25,6 @@ class AuxTestsFunctions {
         $_POST['wp_tutorial_maker_show_category_index'] = true;
         $_POST['wp_tutorial_maker_text_category_list'] = 'Some Category List Header';
         $_POST['wp_tutorial_maker_text_category_link_list']  = 'Some Name to Category Link';
-    }
-
-    public function generate_tid() {
-        $taxonomy = 'wptests_tax';
-        register_taxonomy( $taxonomy, 'post' );
-        $term = rand_str();
-        $t = wp_insert_term( $term, $taxonomy );
-        return $t['term_id'];
     }
 
     public function get_option_array_count() {

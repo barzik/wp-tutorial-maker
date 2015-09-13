@@ -250,6 +250,7 @@ class wp_tutorial_maker {
         $curr_category_name = single_cat_title('', false);
 
         // Check if you are in the Category Page. Should not be called in case of main page/archives/tags
+        print "is?".is_category()."and curr_category_name=$curr_category_name";
         if ( is_category() && $curr_category_name != '' ) {
 
             $term_id = get_cat_ID($curr_category_name);
@@ -291,22 +292,22 @@ class wp_tutorial_maker {
                 }
 
                 if(is_rtl() == true) {
-                    $prev_text .= ' %link ';
-                    $next_text .= ' %link ';
+                    $prev_text .= '%link ';
+                    $next_text .= '%link ';
                 } else {
-                    $prev_text = $prev_text.' %link ';
-                    $next_text = $next_text.' %link ';
+                    $prev_text = $prev_text.'%link ';
+                    $next_text = $next_text.'%link ';
                 }
 
 
-                $prev_next_links = "<div class='wptm_nextprev'>
+                $prev_next_links = strip_ws("<div class='wptm_nextprev'>
                                         <div class='wptm_prev'>".
                                             get_previous_post_link( $prev_text,  '%title', true ).
                                         "</div>
                                         <div class='wptm_next'>".
-                                            get_next_post_link( $next_text,  '%title', true )."
-                                        </div>
-                                    </div>";
+                                            get_next_post_link( $next_text,  '%title', true ).
+                                        "</div>
+                                    </div>");
 
                 if($tutorial_maker_options['wp_tutorial_maker_nextprev'] == 'before') {
                     $content = $prev_next_links.$content;
@@ -317,12 +318,12 @@ class wp_tutorial_maker {
 
                 if($tutorial_maker_options['wp_tutorial_maker_show_category_index']) {
                     $link_to_category = get_category_link( $tutorial_maker_options['category_id'] );
-                    $html = "<div id='wptm_before_category_link_text'>
-                                {$tutorial_maker_options['wp_tutorial_maker_text_category_list']}
-                            </div>";
-                    $html .= "<div class='wptm_link_to_category'><a href='$link_to_category'>
-                                {$tutorial_maker_options['wp_tutorial_maker_text_category_link_name']}
-                            </div></a>";
+                    $html = strip_ws("<div id='wptm_before_category_link_text'>".
+                                "{$tutorial_maker_options['wp_tutorial_maker_text_category_list']}".
+                            "</div>");
+                    $html .= strip_ws("<div class='wptm_link_to_category'><a href='$link_to_category'>".
+                                "{$tutorial_maker_options['wp_tutorial_maker_text_category_link_name']}".
+                            "</div></a>");
 
                     $content .= $html;
 
