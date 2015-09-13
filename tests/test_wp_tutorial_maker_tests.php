@@ -98,13 +98,6 @@ class WP_test_tutorial_maker extends WP_UnitTestCase {
 
         $this->assertNotRegExp('/wptm/', $post_content_inside_tutorial);
 
-
-        $this->go_to( get_permalink( '/?cat='.$cat_id ) );
-
-        $res = $this->plugin->reorder_category('post_date DESC');
-        print "RES";
-        print_r($res);
-
     }
 
 

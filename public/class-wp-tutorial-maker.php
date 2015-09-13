@@ -250,9 +250,7 @@ class wp_tutorial_maker {
         $curr_category_name = single_cat_title('', false);
 
         // Check if you are in the Category Page. Should not be called in case of main page/archives/tags
-        print "is?".is_category()."and curr_category_name=$curr_category_name";
         if ( is_category() && $curr_category_name != '' ) {
-
             $term_id = get_cat_ID($curr_category_name);
             if ( $wp_tutorial_maker_decider[$term_id]['wptm'] == 1 ) {
                 remove_filter('posts_orderby', 'reorder_category');

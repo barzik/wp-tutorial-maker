@@ -107,18 +107,41 @@ class wp_tutorial_maker_Admin {
      * @param $term_id
      */
     public function wp_tutorial_maker_option_update($term_id) {
+        if(!is_numeric($term_id)) {
+            return '';
+        }
+
         global $current_user;
         if('category' == $_POST['taxonomy'] && user_can( $current_user, 'manage_categories' ) ) {
-            $wp_tutorial_maker_decider = get_option($this->plugin_slug);;
-            $wp_tutorial_maker_decider[$term_id]['wptm'] = $_POST['wp_tutorial_maker'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_nextprev'] = $_POST['wp_tutorial_maker_nextprev'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_next_text'] = $_POST['wp_tutorial_maker_next_text'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_prev_text'] = $_POST['wp_tutorial_maker_prev_text'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_show_category_index'] = $_POST['wp_tutorial_maker_show_category_index'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_list'] = $_POST['wp_tutorial_maker_text_category_list'];
-            $wp_tutorial_maker_decider[$term_id]['wp_tutorial_maker_text_category_link_name'] = $_POST['wp_tutorial_maker_text_category_link_list'];
+            $wpmd = get_option($this->plugin_slug);;
+            $wpmd[$term_id]['wptm'] = sanitize_text_field( $_POST['wp_tutorial_maker'] );
+            //only 0, before or after - white label it
+            switch($_POST['wp_tutorial_maker_nextprev']) {
+                case 'before':
+                    $wpmd[$term_id]['wp_tutorial_maker_nextprev'] = 'before';
+                    break;
+                case 'after':
+                    $wpmd[$term_id]['wp_tutorial_maker_nextprev'] = 'after';
+                    break;
+                default:
+                    $wpmd[$term_id]['wp_tutorial_maker_nextprev'] = 0;
+                    break;
 
-            update_option($this->plugin_slug, $wp_tutorial_maker_decider);
+            }
+
+            $wpmd[$term_id]['wp_tutorial_maker_nextprev'] = sanitize_text_field ( $_POST['wp_tutorial_maker_nextprev'] );
+            $wpmd[$term_id]['wp_tutorial_maker_next_text'] = sanitize_text_field( $_POST['wp_tutorial_maker_next_text'] );
+            $wpmd[$term_id]['wp_tutorial_maker_prev_text'] = sanitize_text_field( $_POST['wp_tutorial_maker_prev_text'] );
+            //only 0 or 1
+            if( 1 === $_POST['wp_tutorial_maker_show_category_index']) {
+                $wpmd[$term_id]['wp_tutorial_maker_show_category_index'] = 1;
+            } else {
+                $wpmd[$term_id]['wp_tutorial_maker_show_category_index'] = 0;
+            }
+            $wpmd[$term_id]['wp_tutorial_maker_text_category_list'] = sanitize_text_field( $_POST['wp_tutorial_maker_text_category_list'] );
+            $wpmd[$term_id]['wp_tutorial_maker_text_category_link_name'] = sanitize_text_field ( $_POST['wp_tutorial_maker_text_category_link_list'] );
+
+            update_option($this->plugin_slug, $wpmd);
 
         }
 	}

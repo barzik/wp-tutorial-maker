@@ -19,10 +19,10 @@ class WP_test_Tests_AuxFunctions {
         global $_POST;
         $_POST['taxonomy'] = 'category';
         $_POST['wp_tutorial_maker'] = 1;
-        $_POST['wp_tutorial_maker_nextprev'] = true;
+        $_POST['wp_tutorial_maker_nextprev'] = 'after';
         $_POST['wp_tutorial_maker_next_text'] = 'Some next text';
         $_POST['wp_tutorial_maker_prev_text'] = 'Some prev text';
-        $_POST['wp_tutorial_maker_show_category_index'] = true;
+        $_POST['wp_tutorial_maker_show_category_index'] = 1;
         $_POST['wp_tutorial_maker_text_category_list'] = 'Some Category List Header';
         $_POST['wp_tutorial_maker_text_category_link_list']  = 'Some Name to Category Link';
     }
