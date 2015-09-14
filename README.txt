@@ -1,6 +1,6 @@
 === wp-tutorial-maker ===
 Contributors: barzik
-Tags: tutorial, category,
+Tags: tutorial, category, enterprise ready, admin, sorting, posts reference, links to posts
 Requires at least: 3.5.1
 Tested up to: 4.3
 Stable tag: trunk
@@ -21,6 +21,9 @@ You can also choose the position of those links - before or after the content.
 the link.
 
 After activating WP Tutorial Maker, you can go to any category in your WordPress and designate it as 'Tutorial Category'.
+
+WP Tutorial maker has fully automated testing environment based on WordPress PHPUnit.
+GitHub: https://github.com/barzik/wp-tutorial-maker
 
 == Installation ==
 
@@ -45,8 +48,6 @@ After activating WP Tutorial Maker, you can go to any category in your WordPress
 2. Extract the `wp-tutorial-maker` directory to your computer
 3. Upload the `wp-tutorial-maker` directory to the `/wp-content/plugins/` directory
 4. Activate the plugin in the Plugin dashboard
-
-
 
 == Screenshots ==
 
@@ -76,3 +77,25 @@ After activating WP Tutorial Maker, you can go to any category in your WordPress
 
 = 1.0 =
 * Initial version
+
+Upgrade Notice Section
+
+== Upgrade Notice ==
+
+= 1.5 =
+High Importance security fix.
+
+== Automated testing ==
+
+WP Tutorial maker can be tested by using PHPUnit with the official WordPress testing environment.
+
+1. Install WordPress develop and PHPUnit. You can follow [these instructions](https://make.wordpress.org/core/handbook/testing/automated-testing/)
+2. define local variable WP_TESTS_DIR with the location of WordPress develop phpunit folder.
+for example, put `export WP_TESTS_DIR="/var/www/html/wordpress-develop/tests/phpunit"` in .bashrc (Linux)
+3. Go to the plugin main folder and run `phpunit`.
+4. Tests coverage report is being printed in HTML page to ./log/CodeCoverage.
+
+== Translations ==
+
+* English - default, always included
+* Hebrew
