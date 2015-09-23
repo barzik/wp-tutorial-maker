@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/barzik/wp-tutorial-maker.svg)](https://travis-ci.org/barzik/wp-tutorial-maker)
+
 # WP Tutorial Maker
 
 WP tutorial maker will make your selected categories into tutorial style categories.
