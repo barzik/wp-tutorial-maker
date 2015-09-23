@@ -78,8 +78,6 @@ GitHub: https://github.com/barzik/wp-tutorial-maker
 = 1.0 =
 * Initial version
 
-Upgrade Notice Section
-
 == Upgrade Notice ==
 
 = 1.5 =

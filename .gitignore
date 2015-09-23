@@ -16,4 +16,7 @@ wp-content/uploads/
 wp-content/wp-cache-config.php
 #ignore code coverage results
 /log
+#ignore node_modules for grunt
+node_modules
+npm-debug.log
 
