@@ -19,4 +19,6 @@ wp-content/wp-cache-config.php
 #ignore node_modules for grunt
 node_modules
 npm-debug.log
-
+*.css.map
+.sass-cache/
+*.iml

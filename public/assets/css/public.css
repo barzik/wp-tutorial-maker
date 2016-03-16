@@ -1,24 +1,23 @@
-/* This stylesheet is used to style the public-facing components of the plugin. */
-.wptm_nextprev {
-    display: block;
-    width: 100%;
+.wptm_nextprev, #wptm_before_category_link_text {
+  font-weight: bold;
+  display: block;
 }
+
 .wptm_prev, .wptm_next {
-    display: inline-block;
-    width: 49%;
+  display: inline-block;
+  width: 49%;
 }
 .wptm_prev span, .wptm_next span {
-    font-weight: bold;
-    display: block;
+  font-weight: bold;
+  display: block;
 }
-#wptm_before_category_link_text {
-    font-weight: bold;
-    display: block;
-}
+
 .wptm_link_to_category {
-    font-weight: bold;
-    font-size: larger;
-    display: block;
-    text-align: center;
-    width: 100%;
+  font-weight: bold;
+  display: block;
+  font-size: larger;
+  text-align: center;
+  width: 100%;
 }
+
+/*# sourceMappingURL=public.css.map */

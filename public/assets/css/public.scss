@@ -1,0 +1,22 @@
+@mixin display_fontweight {
+		font-weight: bold;
+		display: block;
+}
+
+.wptm_nextprev, #wptm_before_category_link_text {
+    @include display_fontweight;
+}
+
+.wptm_prev, .wptm_next {
+
+    display: inline-block;
+    width: 49%;
+	span{@include display_fontweight;}
+}
+
+.wptm_link_to_category {
+	@include display_fontweight;
+    font-size: larger;
+    text-align: center;
+    width: 100%;
+}
