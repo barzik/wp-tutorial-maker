@@ -14,8 +14,21 @@ module.exports = function(grunt) {
             options: {
                 configuration: 'phpunit.xml'
             }
-        }
+        },
+		 sass: {                              // Task
+			dist: {                            // Target
+			  options: {                       // Target options
+				style: 'expanded'
+			  },
+			  files: {                         // Dictionary of files
+				'public/assets/css/public.css': 'public/assets/css/public.scss',       // 'destination': 'source'
+			  }
+			}
+       }		
     });
     grunt.loadNpmTasks('grunt-phpcs');
     grunt.loadNpmTasks('grunt-phpunit');
+	
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.registerTask('default', ['sass']);
 };
